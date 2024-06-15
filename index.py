@@ -10,6 +10,8 @@ swagger = Swagger(app)
 
 DATABASE = 'banks.db'
 
+conn = sqlite3.connect(DATABASE, check_same_thread=False)
+
 @app.route('/healthcheck')
 def health():
     return jsonify({"message":'ok'})
@@ -117,5 +119,4 @@ def get_bank_name(bank_id):
 
 if __name__ == '__main__':
     # Connect to SQLite database
-    conn = sqlite3.connect(DATABASE, check_same_thread=False)
     app.run(debug=True)
