@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, render_template
 from flask_cors import CORS
 from flasgger import Swagger
 
@@ -11,6 +11,10 @@ swagger = Swagger(app)
 DATABASE = 'banks.db'
 
 conn = sqlite3.connect(DATABASE, check_same_thread=False)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/healthcheck')
 def health():
